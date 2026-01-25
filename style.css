@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #222;
+  background-color: #fafafa;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  background: #fff;
+}
+
+.header {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.role {
+  font-size: 18px;
+  color: #555;
+  margin: 4px 0;
+}
+
+.contact {
+  font-size: 14px;
+  color: #666;
+}
+
+.links a {
+  margin-right: 12px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+section {
+  margin-bottom: 36px;
+}
+
+section h2 {
+  font-size: 22px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.item {
+  margin-bottom: 20px;
+}
+
+.item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.period {
+  font-size: 13px;
+  color: #777;
+}
+
+ul {
+  margin: 8px 0 0 18px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
