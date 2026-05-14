@@ -47,7 +47,7 @@ body {
   margin-top: 8px;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;   /* 왼쪽 정렬 */
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
