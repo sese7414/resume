@@ -23,7 +23,7 @@ body {
   margin-bottom: 32px;
   /* flex-direction을 column으로 바꾸어 수직 정렬로 변경 */
   display: flex;
-  flex-direction: column; 
+  /* flex-direction: column;  */
   align-items: flex-start; /* 왼쪽 정렬 */
 }
 
@@ -37,7 +37,9 @@ body {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  /* border-radius: 50%;   원형 프로필*/
+  border: 2px solid #e0e0e0; /* 사진 테두리 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 살짝 그림자 */
+  border-radius: 5%; /*  원형 프로필*/
 } 
 
 
