@@ -21,9 +21,10 @@ body {
   border-bottom: 2px solid #eee;
   padding-bottom: 24px;
   margin-bottom: 32px;
+  /* flex-direction을 column으로 바꾸어 수직 정렬로 변경 */
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; 
+  align-items: flex-start; /* 왼쪽 정렬 */
 }
 
 /* 왼쪽 텍스트 영역 */
