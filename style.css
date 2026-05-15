@@ -18,9 +18,10 @@ body {
 }
 
 .header {
-  border-bottom: 2px solid #eee;
-  padding-bottom: 24px;
-  margin-bottom: 32px;
+  border-bottom: none;
+  padding-bottom: 16px;
+  /* meta↔links 간격을 줄인만큼 아래 여백을 더 줌 */
+  margin-bottom: 20px;
   /* flex-direction을 column으로 바꾸어 수직 정렬로 변경 */
   display: flex;
   /* flex-direction: column;  */
@@ -30,6 +31,10 @@ body {
 /* 왼쪽 텍스트 영역 */
 .header-left {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* 이름 / meta / links 사이 간격을 좁힘 */
+  gap: 4px;
 }
 
 /* 오른쪽 사진 영역 */
@@ -44,8 +49,9 @@ body {
 
 
 .meta {
-  color: #777;              /* 회색 포인트 */
-  font-size: 14px;
+  /* 일반 텍스트 색상과 통일 */
+  color: #222;
+  font-size: 15px;
   margin-top: 8px;
 
   display: flex;
@@ -56,7 +62,8 @@ body {
 }
 
 .meta a {
-  color: #777;
+  /* meta 내부의 링크(전화/이메일)는 meta 색상과 동일하게 유지 */
+  color: inherit;
   text-decoration: none;
 }
 
@@ -74,14 +81,18 @@ body {
 
 .header h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: 36px;
 }
 
 .links a {
   margin-right: 12px;
   text-decoration: none;
-  color: #2563eb;
+  color: #777;          /* 회색으로 변경 (Blog, GitHub) */
   font-weight: 500;
+}
+
+.links a:hover {
+  text-decoration: underline;
 }
 
 section {
@@ -99,31 +110,225 @@ section h2 {
   margin-bottom: 20px;
 }
 
-.item h3 {
+/* education: 왼쪽 정보 / 오른쪽 평균학점 배치 */
+.education-item {
+  display: flex;
+  gap: 16px;
+}
+.education-item .edu-left {
+  width: 40%; /* .award-left와 동일한 시작 위치로 맞춤 */
+  max-width: none;
+}
+.education-item .edu-left h3 {
+  margin: 0 0 4px 0;
+}
+.education-item .edu-left p {
+  margin: 0 0 2px 0; /* p와 period 사이 간격 축소 */
+  line-height: 1.4;
+}
+.education-item .edu-left .period {
+  display: block;
+  margin: 0; /* p 바로 아래에 붙도록 */
+  color: #666;
+  font-size: 14px;
+}
+.edu-right {
+  width: 58%; /* .award-right와 동일한 너비로 정렬 시작 위치 일치 */
+  text-align: left;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0b0b0b;
+  align-self: flex-start;
+}
+
+/* 모바일에서는 아래쪽으로 쌓음 */
+@media (max-width: 600px) {
+  .education-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .edu-right {
+    margin-top: 8px;
+  }
+}
+
+.skill-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* 왼쪽 타이틀은 한 줄로 고정, 오른쪽 스킬이 남은 공간을 차지하며 필요시 줄바꿈 */
+}
+
+.skill-title {
   margin: 0;
-  font-size: 18px;
-}
-
-.period {
-  font-size: 13px;
-  color: #777;
-}
-
-ul {
-  margin: 8px 0 0 18px;
+  font-weight: 600;
+  color: #111;
+  white-space: nowrap;          /* 한 줄로 유지 */
+  overflow: hidden;
+  text-overflow: ellipsis;     /* 공간 부족 시 말줄임(한 줄) */
+  flex: 0 0 auto;
 }
 
 .skills {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
-  list-style: none;
+  margin: 0;
   padding: 0;
+  list-style: none;
+  align-items: center;
+  flex: 1 1 auto;       /* 남은 공간 차지 */
+  justify-content: flex-end;
+  flex-wrap: wrap;      /* 공간이 부족하면 여러 줄로 허용 (최대 2줄 자연스럽게) */
+  row-gap: 8px;         /* 줄간격 */
+  overflow: visible;
 }
 
+/* 기본 스킬 배지 */
 .skills li {
   background: #f1f5f9;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 14px;
+  font-weight: 500;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+/* Python 뒤 괄호 글자만 작게 아래에 표시 */
+.skills li.skill-with-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 8px; /* 약간 좁게 */
+  min-width: 56px;
+}
+.skills li.skill-with-sub .skill-main {
+  line-height: 1;
+  font-size: 14px;
+}
+.skills li.skill-with-sub .skill-sub {
+  font-size: 11px;
+  color: #667085;
+  margin-top: 2px;
+  line-height: 1;
+}
+
+/* 강점이 있는 스킬 (배경만 변경) */
+.skills li.strong {
+  background: #cbd5e1;
+}
+
+/* 경험이 있는 스킬 (배경만 변경) */
+.skills li.familiar {
+  background: #f8fafc;
+}
+
+/* 반응형: 좁아지면 오른쪽 리스트가 아래로 내려가도록 허용 */
+@media (max-width: 700px) {
+  .skill-group {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .skills {
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+}
+
+.awards .award-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.award-left {
+  width: 40%;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0b0b0b;
+}
+
+.award-right {
+  width: 58%;
+  text-align: left;
+}
+
+.award-right .period {
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.award-right ul {
+  margin: 8px 0 0 18px;
+}
+
+/* 모바일에서 세로 스택 */
+@media (max-width: 600px) {
+  .awards .award-item {
+    flex-direction: column;
+  }
+  .award-left,
+  .award-right {
+    width: 100%;
+  }
+  .award-left {
+    margin-bottom: 8px;
+  }
+}
+
+/* 범용: 왼쪽 제목 / 오른쪽 기간·상세(awards의 award-right 기준과 동일 너비) */
+.side-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+/* 왼쪽 타이틀(h3 포함) 스타일 정리: h3 기본 margin 제거로 period와 상단 정렬 일치 */
+.side-left {
+  width: 40%;           /* award-left와 동일한 시작 위치 */
+  font-weight: 700;
+  font-size: 16px;
+  color: #0b0b0b;
+}
+.side-left h3,
+.side-left p {
+  margin: 0;            /* h3/p 기본 마진 제거 */
+  padding: 0;
+  line-height: 1.2;
+}
+
+/* awards와 같은 기준으로 오른쪽 period 위치 고정 */
+.side-right {
+  width: 58%;           /* award-right와 동일한 너비로 정렬 시작 위치 일치 */
+  text-align: left;
+}
+.side-right .period {
+  color: #666;
+  font-weight: 600;
+  margin: 0 0 6px 0;   /* 위쪽 여백 제거, 아래 여백만 유지 */
+  font-size: 14px;
+}
+
+.side-right ul {
+  margin: 8px 0 0 18px;
+}
+
+/* 모바일에서 세로 스택 (awards와 동일 동작) */
+@media (max-width: 600px) {
+  .side-item {
+    flex-direction: column;
+  }
+  .side-left,
+  .side-right {
+    width: 100%;
+  }
+  .side-left {
+    margin-bottom: 8px;
+  }
 }
